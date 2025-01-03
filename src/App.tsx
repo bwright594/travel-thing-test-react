@@ -1,7 +1,6 @@
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createContext, useMemo, useState } from 'react';
-import './App.css';
 import MainPage from './components/MainPage';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {}});

@@ -16,8 +16,8 @@ export const defaultPicture : Picture = {
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/travel-thing-474ce/us-central1/api',
-    // baseUrl: 'https://us-central1-travel-thing-474ce.cloudfunctions.net/api',
+    // baseUrl: 'http://localhost:5000/travel-thing-474ce/us-central1/api',
+    baseUrl: 'https://us-central1-travel-thing-474ce.cloudfunctions.net/api',
   }),
   tagTypes: ['pictures'],
   endpoints: (build) => ({
