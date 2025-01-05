@@ -13,13 +13,13 @@ export default function MainPage() {
       </Box>
       <Grid2 container height='90%'>
         <Grid2 size={{ xs: 4.5, md: 5.5 }} mx={2}>
-          <PictureGrid/>
+          <PictureGrid person='Hailey'/>
         </Grid2>
         <Grid2 size={0.2}>
           <Divider orientation='vertical'/>
         </Grid2>
         <Grid2 size={{ xs: 4.5, md: 5.5 }} mx={2}>
-          <PictureGrid/>
+          <PictureGrid person='Bennett'/>
         </Grid2>
       </Grid2>
       <Button variant='contained' onClick={() => setCurrentDate(DateTime.now())}>{currentDate.toISODate()}</Button>

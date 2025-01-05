@@ -5,10 +5,12 @@ import { defaultPicture, Picture, useAddPictureMutation } from '../api-slice';
 export interface PictureUploadDialogProps {
   open: boolean;
   onClose: () => void;
+  person: string;
 }
 
-export default function PictureUploadDialog({ open, onClose }: PictureUploadDialogProps) {
-  const [ picture, setPicture ] = useState<Picture>(defaultPicture);
+export default function PictureUploadDialog({ open, onClose, person }: PictureUploadDialogProps) {
+  const currentDefaultPicture = { ...defaultPicture, person };
+  const [ picture, setPicture ] = useState<Picture>(currentDefaultPicture);
   const [ addPicture, data ] = useAddPictureMutation();
   const handleSubmit = () => {
     console.log(picture);
@@ -20,7 +22,7 @@ export default function PictureUploadDialog({ open, onClose }: PictureUploadDial
 
   const handleClose = () => {
     onClose();
-    setPicture(defaultPicture);
+    setPicture(currentDefaultPicture);
   }
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +43,6 @@ export default function PictureUploadDialog({ open, onClose }: PictureUploadDial
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Upload Picture</DialogTitle>
       <TextField label='Name' onChange={(e) => setPicture((previous) => ({ ...previous, name: e.target.value }))}/>
-      <TextField label='Person' onChange={(e) => setPicture((previous) => ({ ...previous, person: e.target.value }))}/>
       <input type='file' accept='image/*' onChange={handleUpload}/>
       <Box>
         {picture?.url && <Box><Typography> Preview </Typography><img width='100%' height='100%' src={picture.url} /></Box> }

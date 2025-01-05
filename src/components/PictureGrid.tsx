@@ -3,13 +3,19 @@ import { useState } from "react";
 import { useGetPicturesQuery } from "../api-slice";
 import PictureUploadDialog from "./PictureUploadDialog";
 
-export default function PictureGrid() {
-  const { data: pictures, isError, isFetching } = useGetPicturesQuery();
+export interface PictureGridProps {
+  person: string;
+}
+
+export default function PictureGrid({ person } : PictureGridProps) {
+  const { data: pictures, isError, isFetching } = useGetPicturesQuery({person});
   const [ pictureUploadOpen, setPictureUploadOpen ] = useState(false);
 
   return (
     <>
-      <PictureUploadDialog open={pictureUploadOpen} onClose={() => setPictureUploadOpen(false)}/>
+      <PictureUploadDialog open={pictureUploadOpen} onClose={() => setPictureUploadOpen(false)} person={person}/>
+      {/* to be added later */}
+      {/* <Typography variant='h5'>{person}'s Pictures</Typography> */}
       {!isFetching && !isError && pictures?.length === 0 && <Typography variant='h5'>No pictures found</Typography>}
       {isError && <Typography variant='h5'>Error fetching pictures.</Typography>}
       {isFetching && <Typography variant='h5'>Loading...</Typography>}
