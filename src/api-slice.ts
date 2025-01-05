@@ -4,7 +4,10 @@ export interface Picture {
   id?: number;
   name: string;
   person: string;
+  // it's jank as hell, but url is the data url (e.g data:image/png;base64,....) when we upload it,
+  // but downloading it it's an https url to display the image
   url: string;
+  mediaType?: string;
 }
 
 export const defaultPicture : Picture = {

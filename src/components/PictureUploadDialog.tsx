@@ -1,5 +1,5 @@
 import { Box, Button, Dialog, DialogTitle, TextField, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { defaultPicture, Picture, useAddPictureMutation } from '../api-slice';
 
 export interface PictureUploadDialogProps {
@@ -23,19 +23,15 @@ export default function PictureUploadDialog({ open, onClose }: PictureUploadDial
     setPicture(defaultPicture);
   }
 
-  useEffect(() => {
-    console.log(picture);
-  }, [open])
-
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        setPicture((previous) => ({ ...previous, url: e.target?.result as string }));
+      reader.onload = (event) => {
+        setPicture((previous) => ({ ...previous, url: event.target?.result as string }));
       }
-      reader.onerror = (e) => {
-        console.error(e);
+      reader.onerror = (event) => {
+        console.error(event);
       }
       reader.readAsDataURL(file);
     }

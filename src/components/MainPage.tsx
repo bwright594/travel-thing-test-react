@@ -1,4 +1,4 @@
-import { Box, Divider, Grid2, Select } from '@mui/material';
+import { Box, Button, Divider, Grid2, Select } from '@mui/material';
 import { DateTime } from 'luxon';
 import { useState } from 'react';
 import PictureGrid from './PictureGrid';
@@ -22,7 +22,7 @@ export default function MainPage() {
           <PictureGrid/>
         </Grid2>
       </Grid2>
-
+      <Button variant='contained' onClick={() => setCurrentDate(DateTime.now())}>{currentDate.toISODate()}</Button>
     </Box>
   )
 }
