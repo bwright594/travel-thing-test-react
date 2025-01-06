@@ -5,7 +5,7 @@ import PictureGrid from './PictureGrid';
 
 export default function MainPage() {
   const [ currentDate, setCurrentDate ] = useState<string>(DateTime.now().toISODate());
-  const dates = Array.from({ length: 15 }, (_x, i) => DateTime.fromObject({ day: 5 + i, month: 1, year: 2025 }).toISODate());
+  const dates = Array.from({ length: 13 }, (_x, i) => DateTime.fromObject({ day: 6 + i, month: 1, year: 2025 }).toISODate());
   const [ windowWidth, setWindowWidth ] = useState(window.innerWidth);
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -23,7 +23,7 @@ export default function MainPage() {
 
   return (
     <Box width='100%' height='100%'>
-      <AppBar position='static' enableColorOnDark sx={{ p: 2, width: windowWidth }}>
+      <AppBar position='sticky' enableColorOnDark sx={{ p: 2, width: windowWidth }}>
         <Typography variant='h4'>Trip Picture Tracker</Typography>
         <Box display='flex' alignItems={'center'}>
           <Typography variant='h5'>Pictures from: </Typography>
