@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface Picture {
-  id?: number;
+  id?: string;
   name: string;
   person: string;
   // it's jank as hell, but url is the data url (e.g data:image/png;base64,....) when we upload it,
@@ -39,8 +39,15 @@ export const api = createApi({
         body
       }),
       invalidatesTags: ['pictures']
+    }),
+    deletePicture: build.mutation<void, string>({
+      query: (id) => ({
+        url: `/pictures/${id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['pictures']
     })
   })
 });
 
-export const { useGetPicturesQuery, useAddPictureMutation } = api;
+export const { useGetPicturesQuery, useAddPictureMutation, useDeletePictureMutation } = api;

@@ -43,7 +43,6 @@ export default function MainPage() {
           <PictureGrid person='Bennett' date={currentDate}/>
         </Grid2>
       </Grid2>
-
     </Box>
   )
 }
