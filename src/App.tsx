@@ -19,7 +19,12 @@ export default function App() {
     () =>
       createTheme({
         palette: {
-          mode
+          mode,
+          primary: {
+            main: '#7B8D6A',
+            light: '#93A87E',
+            dark: '#667558'
+          }
         }
       }), [mode]
   )

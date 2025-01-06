@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogTitle, TextField, Typography } from '@mui/material';
+import { Backdrop, Box, Button, CircularProgress, Dialog, DialogTitle, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { defaultPicture, Picture, useAddPictureMutation } from '../api-slice';
 
@@ -6,12 +6,13 @@ export interface PictureUploadDialogProps {
   open: boolean;
   onClose: () => void;
   person: string;
+  date: string;
 }
 
-export default function PictureUploadDialog({ open, onClose, person }: PictureUploadDialogProps) {
-  const currentDefaultPicture = { ...defaultPicture, person };
+export default function PictureUploadDialog({ open, onClose, person, date }: PictureUploadDialogProps) {
+  const currentDefaultPicture = { ...defaultPicture, person, date };
   const [ picture, setPicture ] = useState<Picture>(currentDefaultPicture);
-  const [ addPicture, data ] = useAddPictureMutation();
+  const [ addPicture, { data, isLoading } ] = useAddPictureMutation();
   const handleSubmit = () => {
     console.log(picture);
     addPicture(picture)
@@ -53,6 +54,9 @@ export default function PictureUploadDialog({ open, onClose, person }: PictureUp
           Upload
         </Button>
       </Box>
+      <Backdrop open={isLoading}>
+        <CircularProgress/>
+      </Backdrop>
     </Dialog>
   )
 }

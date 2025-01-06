@@ -8,12 +8,14 @@ export interface Picture {
   // but downloading it it's an https url to display the image
   url: string;
   mediaType?: string;
+  date: string;
 }
 
 export const defaultPicture : Picture = {
   name: '',
   person: '',
-  url: ''
+  url: '',
+  date: ''
 };
 
 export const api = createApi({
@@ -24,9 +26,9 @@ export const api = createApi({
   }),
   tagTypes: ['pictures'],
   endpoints: (build) => ({
-    getPictures: build.query<Picture[], { person: string }>({
+    getPictures: build.query<Picture[], { person: string, date: string }>({
       query: (args) => ({
-        url: '/pictures/', params: { person: args.person }
+        url: '/pictures/', params: { person: args.person, date: args.date }
       }),
       providesTags: ['pictures']
     }),
