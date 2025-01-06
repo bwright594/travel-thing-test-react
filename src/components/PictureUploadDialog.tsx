@@ -41,7 +41,7 @@ export default function PictureUploadDialog({ open, onClose, person, date }: Pic
   }
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={() => {}} open={open}>
       <DialogTitle>Upload Picture</DialogTitle>
       <TextField label='Name' onChange={(e) => setPicture((previous) => ({ ...previous, name: e.target.value }))}/>
       <input type='file' accept='image/*' onChange={handleUpload}/>
